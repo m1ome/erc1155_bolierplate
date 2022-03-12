@@ -27,10 +27,10 @@ task("add_item", "Add item to smart contract")
 task("set_uri", "Setting up a new URI")
   .addParam("address", "Smart-contract address")
   .addParam("uri", "URI to work with")
-  .setAction(async ({address, id, price, name}) => {
+  .setAction(async ({uri}) => {
     const Token = await hre.ethers.getContractFactory("Token");
     const contract = await Token.attach(address);
-    const res = await contract.addItem(id, {name: name, price: price});
+    const res = await contract.setURI(uri);
     console.log(`URI set @ ${res.hash}`);
   });  
 
