@@ -16,10 +16,10 @@ npx hardhat run --network rinkeby scripts/verify.js
 
 ## Add an item
 ```shell
-npx hardhat add_item --network=rinkeby --address 0xA0b32A315865eCA2A25a18E81b5D0064dc930B7e --id 0 --price 10000000000000000 --name "First Item"
+npx hardhat add_item --network rinkeby --address 0xA0b32A315865eCA2A25a18E81b5D0064dc930B7e --id 0 --price 1000000000000000 --name "First Item"
 ```
 
 ## Set an URI
 ```shell
-npx hardhat set_uri --network=rinkeby --address 0xA0b32A315865eCA2A25a18E81b5D0064dc930B7e --uri=http://google.com/{id}.json
+npx hardhat set_uri --network rinkeby --address 0xA0b32A315865eCA2A25a18E81b5D0064dc930B7e --uri=http://google.com/{id}.json
 ```
