@@ -17,21 +17,31 @@ task("add_item", "Add item to smart contract")
   .addParam("id", "Item id")
   .addParam("price", "Item price in wei")
   .addParam("name", "Item fancy name")
-  .setAction(async ({address, id, price, name}) => {
+  .addParam("limit", "Item limit")
+  .setAction(async ({address, id, price, name, limit}) => {
     const Token = await hre.ethers.getContractFactory("Token");
     const contract = await Token.attach(address);
-    const res = await contract.addItem(id, {name: name, price: price});
+    const res = await contract.addItem(id, {name: name, price: price, limit: limit});
     console.log(`Item added @ ${res.hash}`);
   });
 
 task("set_uri", "Setting up a new URI")
   .addParam("address", "Smart-contract address")
   .addParam("uri", "URI to work with")
-  .setAction(async ({uri}) => {
+  .setAction(async ({address, uri}) => {
     const Token = await hre.ethers.getContractFactory("Token");
     const contract = await Token.attach(address);
     const res = await contract.setURI(uri);
     console.log(`URI set @ ${res.hash}`);
+  });  
+
+task("flip_sale_state", "Flip sale state")
+  .addParam("address", "Smart-contract address")
+  .setAction(async ({address}) => {
+    const Token = await hre.ethers.getContractFactory("Token");
+    const contract = await Token.attach(address);
+    const res = await contract.flipSaleState();
+    console.log(`Flipped sale state of contract`);
   });  
 
 /**
